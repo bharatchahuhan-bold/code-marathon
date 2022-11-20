@@ -26,8 +26,8 @@ namespace CodeMarathon.ResumeBuilder.Controllers
         public async Task<IActionResult> GetHealthStatus()
         {
             string authUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
-            var apiKey = "77utgl2wd203sw";
-            var apiSecret = "lZr1CTKBbgOwXoHc";
+            var apiKey = "*************";
+            var apiSecret = "*************";
             var redirectUrl = "http://127.0.0.1:5500/index.html";
             var code = "AQTtcNeU8ohcjsUGR-ZU2rqJaZmp7gNft2UYK-bj_vv3RbQLAgwyh3vcys-PNVMDCwEeztU6e_NwThBRNGYOe5I-FrQCsgNpsOK-UBVee3Mhx7V-59aEEfrXmcvNlA3md3Ky6HtFf0AiokCJKzG_Q6eLA3IaD939VYXLZTK9_zJPAHVY7t0ARykMZIhldgRVsuU2FMwyyGjmS1frLUA";
             var sign = "grant_type=authorization_code&code=" + HttpUtility.UrlEncode(code) + "&redirect_uri=" + HttpUtility.HtmlEncode(redirectUrl) + "&client_id=" + apiKey + "&client_secret=" + apiSecret;
