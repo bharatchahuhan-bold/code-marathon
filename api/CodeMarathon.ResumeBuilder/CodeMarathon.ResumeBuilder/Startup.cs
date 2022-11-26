@@ -22,13 +22,6 @@ namespace CodeMarathon.ResumeBuilder
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication()
-            .AddLinkedIn(options =>
-            {
-                options.ClientId = Configuration.GetSection("apiKey")?.Value;
-                options.ClientSecret = Configuration.GetSection("apiSecrect")?.Value;
-            });
-
             services.AddScoped<HttpService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
