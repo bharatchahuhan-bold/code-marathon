@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32413.511
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMarathon.ResumeBuilder", "CodeMarathon.ResumeBuilder\CodeMarathon.ResumeBuilder.csproj", "{0CDDA051-6B41-4D44-8D53-6AFA6280D2BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMarathon.ResumeBuilder", "CodeMarathon.ResumeBuilder\CodeMarathon.ResumeBuilder.csproj", "{0CDDA051-6B41-4D44-8D53-6AFA6280D2BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMarathon.ResumeBuilder.Common", "CodeMarathon.ResumeBuilder.Common\CodeMarathon.ResumeBuilder.Common.csproj", "{7B6EFED5-67F8-4AF3-8D71-7A6D16780CD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMarathon.ResumeBuilder.Common", "CodeMarathon.ResumeBuilder.Common\CodeMarathon.ResumeBuilder.Common.csproj", "{7B6EFED5-67F8-4AF3-8D71-7A6D16780CD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMarathon.ResumeBuilder.Infrastructure", "CodeMarathon.ResumeBuilder.Infrastructure\CodeMarathon.ResumeBuilder.Infrastructure.csproj", "{11BFBD9C-5A0A-4E66-98C3-3EBA7D92E8C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMarathon.ResumeBuilder.Infrastructure", "CodeMarathon.ResumeBuilder.Infrastructure\CodeMarathon.ResumeBuilder.Infrastructure.csproj", "{11BFBD9C-5A0A-4E66-98C3-3EBA7D92E8C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMarathon.ResumeBuilder.BusinessLogic", "CodeMarathon.ResumeBuilder.BusinessLogic\CodeMarathon.ResumeBuilder.BusinessLogic.csproj", "{1B278025-4CA2-43CF-8F44-08FF9BFACCC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMarathon.ResumeBuilder.BusinessLogic", "CodeMarathon.ResumeBuilder.BusinessLogic\CodeMarathon.ResumeBuilder.BusinessLogic.csproj", "{1B278025-4CA2-43CF-8F44-08FF9BFACCC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMarathon.ResumeBuilder.Entities", "CodeMarathon.ResumeBuilder.Entities\CodeMarathon.ResumeBuilder.Entities.csproj", "{0098087F-8C30-44E3-96AC-5D59A02FEE9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMarathon.ResumeBuilder.DTOs", "CodeMarathon.ResumeBuilder.DTOs\CodeMarathon.ResumeBuilder.DTOs.csproj", "{837BDF83-ED21-4915-8CA5-5C906048005E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{1B278025-4CA2-43CF-8F44-08FF9BFACCC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B278025-4CA2-43CF-8F44-08FF9BFACCC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B278025-4CA2-43CF-8F44-08FF9BFACCC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0098087F-8C30-44E3-96AC-5D59A02FEE9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0098087F-8C30-44E3-96AC-5D59A02FEE9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0098087F-8C30-44E3-96AC-5D59A02FEE9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0098087F-8C30-44E3-96AC-5D59A02FEE9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{837BDF83-ED21-4915-8CA5-5C906048005E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{837BDF83-ED21-4915-8CA5-5C906048005E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{837BDF83-ED21-4915-8CA5-5C906048005E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{837BDF83-ED21-4915-8CA5-5C906048005E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

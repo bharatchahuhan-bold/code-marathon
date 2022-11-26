@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeMarathon.ResumeBuilder.BusinessLogic
+namespace CodeMarathon.ResumeBuilder.Entities
 {
     public class Class1
     {
