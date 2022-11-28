@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace CodeMarathon.ResumeBuilder.Common.HttpClientService
 
         #region public methods
 
-        public async Task<string> Get(string apiUrl)
+        public async Task<string> Get(string apiUrl, IDictionary<string, string> headers = null)
         {
             try
             {
@@ -32,6 +33,13 @@ namespace CodeMarathon.ResumeBuilder.Common.HttpClientService
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    if(headers != null)
+                    {
+                        foreach(var header in headers)
+                        {
+                            client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                        }
+                    }
                     HttpResponseMessage response = await client.GetAsync(apiUrl);
                     if (response.IsSuccessStatusCode)
                     {

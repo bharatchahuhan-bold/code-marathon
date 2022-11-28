@@ -1,5 +1,7 @@
 using CodeMarathon.ResumeBuilder.BusinessLogic.Implementations.Authentication;
+using CodeMarathon.ResumeBuilder.BusinessLogic.Implementations.User;
 using CodeMarathon.ResumeBuilder.BusinessLogic.Interfaces.Authentication;
+using CodeMarathon.ResumeBuilder.BusinessLogic.Interfaces.User;
 using CodeMarathon.ResumeBuilder.Common.HttpClientService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +26,7 @@ namespace CodeMarathon.ResumeBuilder
         {
             services.AddScoped<HttpService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
