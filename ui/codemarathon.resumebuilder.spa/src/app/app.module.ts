@@ -8,6 +8,8 @@ import { ResumeBuilderComponent } from './resume-builder/resume-builder.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ResumeDataService } from './services/resume-data.service';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,12 @@ import { MaterialModule } from './material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ResumeDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
