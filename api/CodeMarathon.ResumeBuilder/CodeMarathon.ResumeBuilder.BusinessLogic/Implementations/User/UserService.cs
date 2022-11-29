@@ -1,6 +1,8 @@
-﻿using CodeMarathon.ResumeBuilder.BusinessLogic.Interfaces.User;
+﻿using CodeMarathon.ResumeBuilder.BusinessLogic.Interfaces.Authentication;
+using CodeMarathon.ResumeBuilder.BusinessLogic.Interfaces.User;
 using CodeMarathon.ResumeBuilder.Common;
 using CodeMarathon.ResumeBuilder.Common.HttpClientService;
+using CodeMarathon.ResumeBuilder.DTOs.Authentication;
 using CodeMarathon.ResumeBuilder.DTOs.User;
 using Newtonsoft.Json;
 using System;
@@ -16,13 +18,16 @@ namespace CodeMarathon.ResumeBuilder.BusinessLogic.Implementations.User
         #region private properties
 
         private HttpService _httpService;
+        private IAuthenticationService _authService;
 
         #endregion
 
         #region constructors and desctructors
-        public UserService(HttpService httpService)
+        public UserService(HttpService httpService,
+            IAuthenticationService authService)
         {
             _httpService = httpService;
+            _authService = authService;
         }
 
         #endregion
@@ -33,50 +38,41 @@ namespace CodeMarathon.ResumeBuilder.BusinessLogic.Implementations.User
 
         #region public methods
 
-        public async Task<UserDetailsResponse> GetUserDetailsByLinkedInToken(string token)
+        public async Task<UserDetailsResponse> GetUserDetailsByLinkedInToken(string authCode)
         {
+            var accessToken = await _authService.SignInWithLinkedIn(new DTOs.Authentication.AuthenticationRequest() { AuthCode = authCode });
+
+            var accessTokenObj = JsonConvert.DeserializeObject<LinkedInAccessTokenResponse>(accessToken);
+
             var authorizationHeader = new Dictionary<string, string>();
-            authorizationHeader.Add("Authorization", token);
+            authorizationHeader.Add("Authorization", $"Bearer {accessTokenObj.access_token}");
             var response = await _httpService.Get(Constants.LinkedInProfileDetailsUrl, authorizationHeader);
-            var userDetails = JsonConvert.DeserializeObject<UserDetailsResponse>(response);
+            var linkedInUserDetails = JsonConvert.DeserializeObject<LinkedInUserDetailsResponse>(response);
+
+            var userDetails = new UserDetailsResponse();
+
+            userDetails.firstName = linkedInUserDetails.localizedFirstName;
+            userDetails.lastName = linkedInUserDetails.localizedLastName;
+            userDetails.profilePictureUrl = linkedInUserDetails.profilePicture.displayImage;
 
             // Add mock data
             userDetails.address = new Address();
-            userDetails.address.localized = new Localized();
-            userDetails.address.localized.en_US = "2029 Stierlin Ct, Mountain View, CA 94043";
-            userDetails.address.preferredLocale=new PreferredLocale();
-            userDetails.address.preferredLocale.country = "US";
-            userDetails.address.preferredLocale.language = "en";
+            userDetails.address.addressLine1 = "2029 Stierlin Ct";
+            userDetails.address.addressLine2 = "Mountain View";
+            userDetails.address.city = "San Jose";
+            userDetails.address.state = "California";
+            userDetails.address.country = "United States Of America";
+            userDetails.address.zipCode = "94043";
 
-            userDetails.birthDate = new BirthDate();
-            userDetails.birthDate.day = 1;
-            userDetails.birthDate.month = 10;
-            userDetails.birthDate.year = 1994;
+            userDetails.birthDate = DateTime.Now.AddYears(-27);
 
             userDetails.cerfications = new Cerfications()
             {
                 company = "BOLD",
                 id = 1234,
-                endMonthYear = new EndMonthYear()
-                {
-                    day = 1,
-                    month = 10,
-                    year = 2020
-                },
-                name = new Name()
-                {
-                    localized = new Localized()
-                    {
-                        en_US = "Azure AZ-204 Certification",
-                    },
-                    preferredLocale = new PreferredLocale { country = "US", language = "en" }
-                },
-                startMonthYear = new StartMonthYear()
-                {
-                    day = 1,
-                    month = 10,
-                    year = 2020
-                }
+                endMonthYear = DateTime.Now.AddMonths(-10),
+                name = "Azure AZ-204 Certification",
+                startMonthYear = DateTime.Now.AddMonths(-12)
             };
 
             userDetails.education = new List<Education>();

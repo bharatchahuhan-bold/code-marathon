@@ -1,31 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeMarathon.ResumeBuilder.DTOs.User
 {
     public class Address
     {
-        public Localized localized { get; set; }
-        public PreferredLocale preferredLocale { get; set; }
-    }
-
-    public class BirthDate
-    {
-        public int day { get; set; }
-        public int month { get; set; }
-        public int year { get; set; }
+        public string addressLine1 { get; set; }
+        public string addressLine2 { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string country { get; set; }
+        public string zipCode { get; set; }
     }
 
     public class Cerfications
     {
         public int id { get; set; }
         public string company { get; set; }
-        public EndMonthYear endMonthYear { get; set; }
-        public Name name { get; set; }
-        public StartMonthYear startMonthYear { get; set; }
+        public DateTime endMonthYear { get; set; }
+        public string name { get; set; }
+        public DateTime startMonthYear { get; set; }
     }
 
     public class Education
@@ -98,7 +92,7 @@ namespace CodeMarathon.ResumeBuilder.DTOs.User
         public string title { get; set; }
     }
 
-    public class UserDetailsResponse
+    public class LinkedInUserDetailsResponse
     {
         public string localizedLastName { get; set; }
         public ProfilePicture profilePicture { get; set; }
@@ -106,8 +100,15 @@ namespace CodeMarathon.ResumeBuilder.DTOs.User
         public LastName lastName { get; set; }
         public string id { get; set; }
         public string localizedFirstName { get; set; }
+    }
+
+    public class UserDetailsResponse
+    {
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string profilePictureUrl { get; set; }
         public Address address { get; set; }
-        public BirthDate birthDate { get; set; }
+        public DateTime birthDate { get; set; }
         public Cerfications cerfications { get; set; }
         public List<Education> education { get; set; }
         public List<Organization> organizations { get; set; }
