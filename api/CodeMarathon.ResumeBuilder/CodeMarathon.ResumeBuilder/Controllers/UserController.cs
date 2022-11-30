@@ -16,10 +16,11 @@ namespace CodeMarathon.ResumeBuilder.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GetUserDetails([FromBody] AuthenticationRequest authCode)
+        [HttpGet]
+        [Route("v1/getUserDetails")]
+        public async Task<IActionResult> GetUserDetails(string authCode)
         {
-            var response = await _userService.GetUserDetailsByLinkedInToken(authCode.AuthCode);
+            var response = await _userService.GetUserDetailsByLinkedInToken(authCode);
             return Ok(response);
         }
     }

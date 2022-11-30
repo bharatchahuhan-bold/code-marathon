@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 
@@ -7,8 +7,8 @@ import { Observable, of } from "rxjs";
 export class ResumeDataService {
 constructor(private http: HttpClient) {}
 
-getResumeData(): Observable<any> {
-  return this.http.get("http://jsonplaceholder.typicode.com/users");
-  //subscribe((data) ⇒ console.log(data))
+getResumeData(code: string): Observable<any> {
+  return this.http.get("https://localhost:5001/api/user/v1/getUserDetails?authCode=" + code);
+    //.subscribe((data) ⇒ console.log(data))
   }
 }
