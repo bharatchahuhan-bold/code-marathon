@@ -11,18 +11,19 @@ import { ResumeDataService } from '../services/resume-data.service';
 export class ResumeBuilderComponent implements OnInit {
   private fields: User = {};
   public isLoading: boolean = true;
+  private authCode: string='';
 
   constructor(private resumeDataService: ResumeDataService, private route: ActivatedRoute) {}
 
   public ngOnInit() {
     this.route.queryParams.subscribe(params => {
       console.log('data', params);
-      this.resumeDataService.getResumeData(params['code']).subscribe(data => {
+      this.authCode = params['code'];
+      this.resumeDataService.getResumeData(this.authCode).subscribe(data => {
         this.isLoading = false;
         this.fields = data;
         console.log('fields', this.fields);
       })
     });
-    
   }
 }

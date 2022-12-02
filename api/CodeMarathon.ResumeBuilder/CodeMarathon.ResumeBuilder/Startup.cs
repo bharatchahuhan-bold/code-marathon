@@ -28,6 +28,13 @@ namespace CodeMarathon.ResumeBuilder
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost:4200")
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            })); 
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -48,6 +55,8 @@ namespace CodeMarathon.ResumeBuilder
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("MyPolicy");
 
             app.UseAuthorization();
 
