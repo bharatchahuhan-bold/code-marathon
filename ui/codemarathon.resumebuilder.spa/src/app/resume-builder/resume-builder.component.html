@@ -1,4 +1,5 @@
-<div class="container content">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="container content"  *ngIf="!isLoading">
   <div>
     <mat-form-field>
         <mat-label>Input</mat-label>
@@ -15,7 +16,8 @@
       </mat-form-field>
     </div>
       <mat-form-field appearance="fill">
-        <mat-label>Textarea</mat-label>
-        <textarea matInput></textarea>
+        <mat-label>Address</mat-label>
+        <textarea matInput>
+        </textarea>
       </mat-form-field>
 </div>

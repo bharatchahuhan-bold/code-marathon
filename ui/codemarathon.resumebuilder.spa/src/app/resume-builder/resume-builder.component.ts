@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../models/user.model';
 import { ResumeDataService } from '../services/resume-data.service';
 
 @Component({
@@ -8,18 +9,20 @@ import { ResumeDataService } from '../services/resume-data.service';
   styleUrls: ['./resume-builder.component.scss']
 })
 export class ResumeBuilderComponent implements OnInit {
-  private fields: any;
+  private fields: User = {};
+  public isLoading: boolean = true;
 
   constructor(private resumeDataService: ResumeDataService, private route: ActivatedRoute) {}
 
   public ngOnInit() {
-    console.log('params', this.route.params);    
-    console.log('paramsMap', this.route.paramMap);
-    console.log('queryparams', this.route.queryParams);
-    console.log('queryparamsMap', this.route.queryParamMap);
-    this.route.queryParams.subscribe(data => console.log('data', data));
-    this.resumeDataService.getResumeData().subscribe(data => {
-      this.fields = data;
-    })
+    this.route.queryParams.subscribe(params => {
+      console.log('data', params);
+      this.resumeDataService.getResumeData(params['code']).subscribe(data => {
+        this.isLoading = false;
+        this.fields = data;
+        console.log('fields', this.fields);
+      })
+    });
+    
   }
 }
